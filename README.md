@@ -18,6 +18,30 @@ Synthesis requires three files as follows,
 
 ◦ Verilog/VHDL Files (.v or .vhdl or .vhd)
 
+### Creating Source Code :
+### Verilog Code :
+~~~
+module alu_32bit_case(y,a,b,f);
+input [31:0]a;
+input [31:0]b;
+input [2:0]f;
+output reg [31:0]y;
+always@(*)
+begin
+case(f)
+3'b000:y=a&b; //AND Operation
+3'b001:y=a|b; //OR Operation
+3'b010:y=~(a&b); //NAND Operation
+3'b011:y=~(a|b); //NOR Operation
+3'b100:y=a^b; //XOR Operation
+3'b101:y=~(a^b); //XNOR Operation
+3'b110:y=~a; //NOT of a
+3'b111:y=~b; //NOT of b
+endcase
+end
+endmodule
+~~~
+
 ### Step 2 : Performing Synthesis
 
 The Liberty files are present in the library path,
@@ -37,9 +61,17 @@ used.
 
 #### Synthesis RTL Schematic :
 
+![Screenshot 2024-11-23 155708](https://github.com/user-attachments/assets/09f25d40-4657-499d-a5d9-7470a4ec7ca1)
+
 #### Area report:
 
+![Screenshot 2024-11-23 155735](https://github.com/user-attachments/assets/d4923f13-b047-43df-91a1-7d54e371d878)
+
 #### Power Report:
+
+![Screenshot 2024-11-23 155754](https://github.com/user-attachments/assets/b0f88783-8bda-4e0a-bb1b-c3c58b18554d)
+
+![Screenshot 2024-11-23 155744](https://github.com/user-attachments/assets/01848bcb-bf1d-4cab-a9d2-65e71553505a)
 
 #### Result: 
 
